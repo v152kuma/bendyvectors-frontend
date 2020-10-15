@@ -1,0 +1,771 @@
+
+<div class="container-scroller">
+  <app-navbar *ngIf="showNavbar"></app-navbar>
+  <div class="container-fluid page-body-wrapper">
+    <app-sidebar *ngIf="showSidebar"></app-sidebar>
+    <div class="main-panel" [ngClass]="{ 'main-panel-only' : !showSidebar }">
+      <div class="content-wrapper">
+        <app-spinner *ngIf="isLoading"></app-spinner>
+        <div contentAnimate *ngIf="!isLoading" class="h-100">
+
+
+          <div class="row">
+
+            <div class="col-md-12">
+               <!-- Modal starts -->
+        
+        <ng-template class="modal fade" #exampleModalContent let-modal>
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Add Note</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modal.dismiss()">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body p-4">
+
+              <form>
+                <div class="form-group">
+                  <div class="pl-3 mb-2">
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                    <label class="form-check-label ml-0" for="exampleRadios1">
+                      Clinical
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                    <label class="form-check-label ml-0" for="exampleRadios2">
+                      Non-clinical
+                    </label>
+                  </div>
+                </div>
+                </div>
+                <div class="form-group">
+                  <label for="exampleFormControlSelect1">Select Caregiver/Provider</label>
+                  <select class="form-control" id="exampleFormControlSelect1">
+                    <option>John Smith</option>
+                    <option>Karen Bruce</option>
+                    <option>Samual Richards</option>
+                   
+                  </select>
+                </div>
+              
+                <div class="form-group">
+                  <label for="exampleFormControlTextarea1">Note</label>
+                  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                </div>
+              </form>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" (click)="modal.close()">Save Note</button>
+              <button type="button" class="btn btn-light" data-dismiss="modal" (click)="modal.close()">Cancel</button>
+            </div>
+          </div>
+        </ng-template>
+
+        <ng-template class="modal fade" #manageTabs let-modal>
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Manage</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modal.dismiss()">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body p-2">
+
+              <div class="row">
+                <div class="col-6">
+
+                  <h6 class="ml-5 mt-3 mb-2"><strong>All</strong></h6>
+
+                  <div class="ml-5 border-right">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="">
+                    <label class="form-check-label ml-0">
+                      Coverage Info
+                    </label>
+                  </div>
+
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" checked>
+                    <label class="form-check-label ml-0">Coverage Info</label>
+                  </div>
+
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" checked>
+                    <label class="form-check-label ml-0">Notes</label>
+                  </div>
+
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" checked>
+                    <label class="form-check-label ml-0">Medication</label>
+                  </div>
+
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" checked>
+                    <label class="form-check-label ml-0">Gaps In care</label>
+                  </div>
+
+
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" checked>
+                    <label class="form-check-label ml-0">Labs</label>
+                  </div>
+
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="">
+                    <label class="form-check-label ml-0">Care Team</label>
+                  </div>
+
+
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="">
+                    <label class="form-check-label ml-0">Diagnosis / Conditions</label>
+                  </div>
+
+
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="">
+                    <label class="form-check-label ml-0">ADT</label>
+                  </div>
+
+
+                 
+                  </div>
+                </div>
+
+                <div class="col-6">
+
+                  <h6 class="ml-5 mt-3 mb-2"><strong>Selected</strong></h6>
+
+                  <div class="ml-5 border-right">
+                  
+
+                  <div class="form-check">
+                    
+                    <label class="form-check-label ml-0">Coverage Info</label>
+                  </div>
+
+                  <div class="form-check">
+                    
+                    <label class="form-check-label ml-0">Notes</label>
+                  </div>
+
+                  <div class="form-check">
+                    
+                    <label class="form-check-label ml-0">Medication</label>
+                  </div>
+
+                  <div class="form-check">
+                   
+                    <label class="form-check-label ml-0">Gaps In care</label>
+                  </div>
+
+
+                 
+
+                 
+                  </div>
+                </div>
+              </div>
+            
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" (click)="modal.close()">Save</button>
+              <button type="button" class="btn btn-light" data-dismiss="modal" (click)="modal.close()">Cancel</button>
+            </div>
+          </div>
+        </ng-template>
+
+
+        <!-- Modal Ends -->
+            </div>
+          </div>
+
+
+
+<div class="row member-details">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+
+                <h4 class="mb-3">Herman Beck <small>(Male, 50 years old)</small></h4>
+        <div class="row">
+            <div class="col-md-4 col-12">
+                
+                <p><strong class="mr-1">DOB:</strong> <span>01/01/1970</span></p>
+                <p><strong class="mr-1">Address:</strong> <span>11657 Buford St, Cerritos, CA, 90703</span></p>
+                <p><strong class="mr-1">Home:</strong> <span>(123) 456-7890</span></p>
+                <p><strong class="mr-1">Mobile:</strong><span class="mr-2">(152) 172-0985</span> <span class="badge badge-primary rounded ft-11">Preferred</span></p>
+
+            </div>
+
+            <div class="col-md-8 col-12">
+                <p><strong class="mr-1">Primary Email:</strong> <span>herman_beck1970@gmail.com</span></p>
+                <p><strong class="mr-1">Secondary Email:</strong> <span>herman1970@gmail.com</span></p>
+                <p><strong class="mr-1">Coverage Type:</strong> <span>Medical, Dental, Vision, Maternity, Behavioral, Behavioral Substance Abuse</span></p>
+            </div>
+        </div>
+        </div>
+        </div>
+    </div>
+
+
+    <div class="col-md-12 text-right mt-3 mb-3">
+      <button class="btn btn-sm btn-link" (click)="openManageModal(manageTabs)">Manage</button>
+    </div>
+
+
+    <div class="col-md-12 grid-margin stretch-card tabs-table">
+        <div class="card">
+          <div class="card-body">
+           
+            <ngb-tabset>
+              <ngb-tab title="Coverage Information">
+                <ng-template ngbTabContent>
+                 
+                    <div class="row">
+                        <div class="col-lg-12 grid-margin stretch-card">
+                          <div class="card">
+                            <div class="card-body p-1">
+                             
+                              <div class="table-responsive">
+                                <table class="table">
+                                  <thead>
+                                    <tr>
+                                      <th>Policy Number</th>
+                                      <th>Policy Name</th>
+                                      <th>Start Date</th>
+                                      <th>End Date</th>
+                                      <th>Issue State</th>
+                                      <th>Relationship</th>
+                                      <th>Coverage Type</th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                <tr>
+                                    <td><a>82562</a></td>
+                                    <td>HRRP</td>
+                                    <td>01/01/2019</td>
+                                    <td>12/12/2050</td>
+                                    <td>MN</td>
+                                    <td>Myself</td>
+                                    <td>Dental</td>
+
+                                </tr>
+
+                                <tr>
+                                    <td><a>74158</a></td>
+                                    <td>HRRP</td>
+                                    <td>01/01/2019</td>
+                                    <td>12/12/2050</td>
+                                    <td>MN</td>
+                                    <td>Spouse</td>
+                                    <td>Medical</td>
+
+                                </tr>
+
+
+                                <tr>
+                                    <td><a>14582</a></td>
+                                    <td>HRRP</td>
+                                    <td>01/01/2019</td>
+                                    <td>12/12/2050</td>
+                                    <td>MN</td>
+                                    <td>Newborn</td>
+                                    <td>Medical</td>
+
+                                </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        </div>
+
+                </ng-template>
+              </ngb-tab>
+
+              <ngb-tab title="Notes">
+                <ng-template ngbTabContent>
+                  
+                    <div class="row">
+                        <div class="col-lg-12 grid-margin stretch-card">
+                          <div class="card">
+                            <div class="card-body p-1">
+
+                                <div class="mb-2">
+                                    <button class="btn btn-sm btn-light" (click)="openMediumModal(exampleModalContent)">
+                                        + Add Note
+                                    </button>
+                                </div>
+                             
+                              <div class="table-responsive">
+                                <table class="table">
+                                  <thead>
+                                    <tr>
+                                      <th>Date Added</th>
+                                      <th>Added By</th>
+                                      <th>Note Type</th>
+                                      <th>Policy</th>
+                                      <th>Note</th>
+                                      <th>Action</th>
+                                     
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+
+                                    
+                                <tr>
+                                    <td><a>08/19/2019 7:00AM</a></td>
+                                    <td>Rita Perez</td>
+                                    <td>Non Clinical</td>
+                                    <td>32045 - ABCDE</td>
+                                    <td>Married to Yvonne, 2 Children</td>
+                                    <td><button class="btn btn-light btn-sm mr-2">Edit</button> <button class="btn btn-danger btn-sm">Del</button></td>
+                                    
+                                    
+
+                                </tr>
+
+                                <tr>
+                                    <td><a>08/19/2019 7:00AM</a></td>
+                                    <td>Rita Perez</td>
+                                    <td>Non Clinical</td>
+                                    <td>32045 - ABCDE</td>
+                                    <td>Starting college. Recent trip to Spain</td>
+                                    <td><button class="btn btn-light btn-sm mr-2">Edit</button> <button class="btn btn-danger btn-sm">Del</button></td>
+                                    
+
+                                </tr>
+
+                                
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        </div>
+
+                </ng-template>
+              </ngb-tab>
+
+              <ngb-tab title="Medication">
+                <ng-template ngbTabContent>
+                  
+                  <div class="row">
+                    <div class="col-lg-12 grid-margin stretch-card">
+                      <div class="card">
+                        <div class="card-body p-1">
+
+                            
+                         
+                          <div class="table-responsive">
+                            <table class="table">
+                              <thead>
+                                <tr>
+                                  <th>Drug Name</th>
+                                  <th>Drug Group</th>
+                                  <th>Drug NDC</th>
+                                  <th>Provider</th>
+                                  <th>First Fill</th>
+                                  <th>Last Fill</th>
+                                  <th>Days Supply</th>
+                                  <th>REfills</th>
+                                  <th>Med Adherence</th>
+                                  <th>Status</th>
+                                 
+                                </tr>
+                              </thead>
+                              <tbody>
+
+                                <tr>
+                                  <td>Carvedilol 500mg</td>
+                                  <td>Beta</td>
+                                  <td>12345858</td>
+                                  <td>Edwin</td>
+                                  <td>01-01-2020</td>
+                                  <td>08-01-2020</td>
+                                  <td>60</td>
+                                  <td>1</td>
+                                  <td>MAC</td>
+                                  <td>Current</td>
+                                 
+                                </tr>
+
+                                <tr>
+                                  <td>Amoxicilin 250mg</td>
+                                  <td>Beta</td>
+                                  <td>12345858</td>
+                                  <td>Edwin</td>
+                                  <td>01-01-2020</td>
+                                  <td>08-01-2020</td>
+                                  <td>60</td>
+                                  <td>1</td>
+                                  <td>MAC</td>
+                                  <td>Current</td>
+                                 
+                                </tr>
+                           
+
+                            
+                              </tbody>
+                            </table>
+                          </div>
+
+                          <div class="row mt-4 text-right">
+                            <div class="col-md-12">
+                              <ngb-pagination [collectionSize]="20" [pageSize]="5" [page]="1" aria-label="Default pagination" class="pagination-flat pagination-success"></ngb-pagination>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    </div>
+                </ng-template>
+              </ngb-tab>
+
+              <ngb-tab title="Gaps in Care">
+                <ng-template ngbTabContent>
+                  <div class="row">
+                    <div class="col-lg-12 grid-margin stretch-card">
+                      <div class="card">
+                        <div class="card-body p-1">
+
+                            
+                         
+                          <div class="table-responsive">
+                            <table class="table">
+                              <thead>
+                                <tr>
+                                  <th>Date</th>
+                                  <th>Care Gap Title</th>
+                                  <th>Description</th>
+                                  <th>Action</th>
+                                  
+                                 
+                                </tr>
+                              </thead>
+                              <tbody>
+
+                                
+                            <tr>
+                                <td>05-05-2020</td>
+                                <td>Flu Shot</td>
+                                <td>Missing Flushot</td>
+                                <td><button class="btn btn-success btn-sm mr-2">Action</button></td>
+                             </tr>
+
+
+                             <tr>
+                              <td>08-07-2020</td>
+                              <td>Lab Test</td>
+                              <td>Pending with one of the critical lab test</td>
+                              <td><button class="btn btn-success btn-sm mr-2">Action</button></td>
+                           </tr>
+
+
+
+
+                            
+                            
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    </div>
+                </ng-template>
+              </ngb-tab>
+              
+              <ngb-tab title="Labs">
+                <ng-template ngbTabContent>
+                  <div class="row">
+                    <div class="col-lg-12 grid-margin stretch-card">
+                      <div class="card">
+                        <div class="card-body p-1">
+
+                            
+                         
+                          <div class="table-responsive">
+                            <table class="table">
+                              <thead>
+                                <tr>
+                                  <th>Lab Test</th>
+                                  <th>Result</th>
+                                  <th>Normal Range</th>
+                                  <th>Status from Previous</th>
+                                  
+                                 
+                                </tr>
+                              </thead>
+                              <tbody>
+
+                                
+                            <tr>
+                                <td>Creatinine</td>
+                                <td>1.68mg/dL</td>
+                                <td>0.84 - 1.21 mg/dL</td>
+                                <td class="text-danger">UP</td>
+                             </tr>
+
+
+                             <tr>
+                              <td>Obcaecati</td>
+                              <td>1.68mg/dL</td>
+                              <td>0.84 - 1.21 mg/dL</td>
+                              <td class="text-success">Down</td>
+                           </tr>
+
+                           <tr>
+                            <td>Voluptatum</td>
+                            <td>1.68mg/dL</td>
+                            <td>0.84 - 1.21 mg/dL</td>
+                            <td class="text-warning">Normal</td>
+                         </tr>
+
+
+
+
+                            
+                            
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    </div>
+                </ng-template>
+              </ngb-tab>
+
+              <ngb-tab title="Care Team">
+                <ng-template ngbTabContent>
+
+                  <div class="row">
+                    <div class="col-md-3 grid-margin stretch-card">
+                      <div class="card bg-light rounded">
+                        <div class="card-body">
+                         
+                          <ul class="list-unstyled">
+                            <li><strong>John B Carl</strong></li>
+                            <li>Nuerology</li>
+                            <li>Primary Care</li>
+                            
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-md-3 grid-margin stretch-card">
+                      <div class="card bg-light rounded">
+                        <div class="card-body">
+                         
+                          <ul class="list-unstyled">
+                            <li><strong>Bard Carter</strong></li>
+                            <li>General Physician</li>
+                            <li>Primary Care</li>
+                            
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+
+
+                    <div class="col-md-3 grid-margin stretch-card">
+                      <div class="card bg-light rounded">
+                        <div class="card-body">
+                         
+                          <ul class="list-unstyled">
+                            <li><strong>Samual</strong></li>
+                            <li>Dental</li>
+                            <li>Primary Care</li>
+                            
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-md-3 grid-margin stretch-card">
+                      <div class="card bg-light rounded">
+                        <div class="card-body">
+                         
+                          <ul class="list-unstyled">
+                            <li><strong>Wilsmith</strong></li>
+                            <li>Skin</li>
+                            <li>Primary Care</li>
+                            
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  
+                 
+                  
+                  
+                   
+                    
+                  </div>
+
+                </ng-template>
+              </ngb-tab>
+
+              <ngb-tab title="Diagnosis / Conditions">
+                <ng-template ngbTabContent>
+
+                  <div class="row">
+                    <div class="col-lg-12 grid-margin stretch-card">
+                      <div class="card">
+                        <div class="card-body p-1">
+
+                            
+                         
+                          <div class="table-responsive">
+                            <table class="table">
+                              <thead>
+                                <tr>
+                                  <th>Date</th>
+                                  <th>Details</th>
+                                 
+                                  
+                                 
+                                </tr>
+                              </thead>
+                              <tbody>
+
+                                
+                            <tr>
+                                <td>01/01/2020</td>
+                                <td>L21.8 Seborrheic Dermatitis</td>
+                                
+                             </tr>
+
+
+                             <tr>
+                              <td>11/01/2019</td>
+                              <td> E11.2 Type 2 DM with Kidney Complications</td>
+                              
+                           </tr>
+
+                           <tr>
+                            <td>14/01/2019</td>
+                            <td> Z94.0 Kidney Transplant Status</td>
+                            
+                         </tr>
+
+
+                         <tr>
+                          <td>20/01/2019</td>
+                          <td> E11.2 Fit/adjust Peritoneal Dialysis Catheter</td>
+                          
+                       </tr>
+
+
+
+
+                            
+
+
+
+
+                            
+                            
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    </div>
+                 
+                </ng-template>
+              </ngb-tab>
+
+              <ngb-tab title="ADT">
+                <ng-template ngbTabContent>
+
+                  <div class="row">
+                    <div class="col-lg-12 grid-margin stretch-card">
+                      <div class="card">
+                        <div class="card-body p-1">
+
+                            
+                         
+                          <div class="table-responsive">
+                            <table class="table">
+                              <thead>
+                                <tr>
+                                  <th>Admit Date</th>
+                                  <th>Admit Type</th>
+                                  <th>Hospital Name</th>
+                                  <th>Discharge Date</th>
+                                  <th>Comments</th>
+                                 
+                                  
+                                 
+                                </tr>
+                              </thead>
+                              <tbody>
+
+                                
+                            <tr>
+                                <td>07/03/2020 10:00PM</td>
+                                <td>ER</td>
+                                <td>St.Marry's Hospital</td>
+                                <td>07/03/2020 11:30PM</td>
+                                <td>Need a followup visit on 10/03/2020</td>
+                                
+                             </tr>
+
+
+                           
+
+
+
+                            
+
+
+
+
+                            
+                            
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    </div>
+                 
+                </ng-template>
+              </ngb-tab>
+
+              <!-- <ngb-tab title="&#9776; Manage Tabs">
+                <ng-template ngbTabContent>
+                 
+                </ng-template>
+              </ngb-tab> -->
+
+
+
+             
+            </ngb-tabset>
+          </div>
+        </div>
+      </div>
+</div>
+
+
+
+
+</div>
+</div>
+</div>
+</div>
+</div>

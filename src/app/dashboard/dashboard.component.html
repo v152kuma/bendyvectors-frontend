@@ -1,0 +1,234 @@
+
+<div class="container-scroller">
+  <app-navbar *ngIf="showNavbar"></app-navbar>
+  <div class="container-fluid page-body-wrapper">
+    <app-sidebar *ngIf="showSidebar"></app-sidebar>
+    <div class="main-panel" [ngClass]="{ 'main-panel-only' : !showSidebar }">
+      <div class="content-wrapper">
+        <app-spinner *ngIf="isLoading"></app-spinner>
+        <div contentAnimate *ngIf="!isLoading" class="h-100">
+         
+<div class="row">
+  <div class="col-md-4 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Information</h4>
+        <!-- <p class="card-description">Optio dolor molestiae corporis</p> -->
+        <ul class="list-ticked">
+          <li>Fullfillment</li>
+          <li>Enrollments</li>
+          <li>Knowledge Now</li>
+          <li>Patient Monitoring</li>
+          <li>Subscriber ID</li>
+          <!-- <li>Facilisis in pretium nisl aliquet</li>
+          <li>Nulla volutpat aliquam velit</li> -->
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Appointments & Meetings</h4>
+        <!-- <p class="card-description">Vitae, esse temporibus. </p> -->
+        <ul class="list-star">
+          <li>Friday, July 17, 2020</li>
+          <li>Wednesday, July 22, 2020</li>
+          <li>Tuesday, July 28, 2020</li>
+          <li>Friday, July 31, 2020</li>
+          <li>Monday, Aug 3, 2020</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="col-md-4 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Program Enrollments</h4>
+        <!-- <p class="card-description">Amet consectetur adipisicing elit</p> -->
+        
+        <div class="row">
+          <div class="col-md-12 col-12">
+            <div class="form-group row">
+             
+              <div class="col-sm-12">
+                <select class="form-control form-control-sm">
+                  <option>Referred</option>
+                 
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <ul class="list-arrow">
+          <li>Behavioral Health Case Management</li>
+          <li>BH Complex CM</li>
+          <li>BH Coordination</li>
+         
+          <li>Case Management BH</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title">Priority</h4>
+       
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>
+                  User
+                </th>
+                <th>
+                  First name
+                </th>
+                <th>
+                  Last name
+                </th>
+                <th>
+                  Date of Birth
+                </th>
+                <th>
+                  Gender
+                </th>
+
+                <th>
+                  Address
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="py-1">
+                 <a routerLink="/memberDetails"> <img src="assets/images/faces-clipart/pic-1.png" alt="image" /></a>
+                </td>
+                <td>
+                  Herman 
+                </td>
+                <td>
+                  Beck
+                </td>
+                <td>
+                  01/01/1970
+                </td>
+                <td>
+                  Male
+                </td>
+
+                <td>
+                 <small> 11657 Buford St, Cerritos, CA, 90703 </small>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="py-1">
+                 <a routerLink="/memberDetails"> <img src="assets/images/faces-clipart/pic-2.png" alt="image" /></a>
+                </td>
+                <td>
+                  Michal 
+                </td>
+                <td>
+                  Nick
+                </td>
+                <td>
+                  05/06/1983
+                </td>
+                <td>
+                  Male
+                </td>
+
+                <td>
+                 <small> 41528 ipsalore St, Cerritos, CA, 90782 </small>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="py-1">
+                 <a routerLink="/memberDetails"> <img src="assets/images/faces-clipart/pic-3.png" alt="image" /></a>
+                </td>
+                <td>
+                  Jonas 
+                </td>
+                <td>
+                  Martha
+                </td>
+                <td>
+                  20/10/1973
+                </td>
+                <td>
+                  Male
+                </td>
+
+                <td>
+                 <small> 41527 magind St, Cerritos, CA, 90703 </small>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="py-1">
+                 <a routerLink="/memberDetails"> <img src="assets/images/faces-clipart/pic-4.png" alt="image" /></a>
+                </td>
+                <td>
+                  Cara 
+                </td>
+                <td>
+                  William
+                </td>
+                <td>
+                  10/01/1969
+                </td>
+                <td>
+                  Male
+                </td>
+
+                <td>
+                 <small> 78524 Ipsum St, Cerritos, CA, 90745 </small>
+                </td>
+              </tr>
+
+              <tr>
+                <td class="py-1">
+                 <a routerLink="/memberDetails"> <img src="assets/images/faces-clipart/pic-2.png" alt="image" /></a>
+                </td>
+                <td>
+                  Justin 
+                </td>
+                <td>
+                  Mogh
+                </td>
+                <td>
+                  05/02/1975
+                </td>
+                <td>
+                  Male
+                </td>
+
+                <td>
+                 <small> 74852 lorem St, Cerritos, CA, 50782 </small>
+                </td>
+              </tr>
+
+              
+              
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+ 
+  
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
